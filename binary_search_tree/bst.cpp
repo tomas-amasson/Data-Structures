@@ -158,3 +158,31 @@ void bst::transplant(tree_node *u, tree_node *v)
 
     return ;
 }
+
+
+void bst::tree_delete(tree_node *del)
+{
+    if (del->left == nullptr)
+        transplant(del, del->right);
+    
+    else if (del->right == nullptr)
+        transplant(del, del->left);
+
+    else 
+    {
+        tree_node *sucessor = tree_sucessor(del);
+
+        if (sucessor != del->right)
+        {
+            transplant(sucessor, sucessor->right);
+            sucessor->right = del->right;
+            del->right = nullptr;
+            sucessor->right->father = sucessor;
+        }
+
+        transplant(del, sucessor);
+        sucessor->left = del->left;
+        del->left = nullptr;
+        sucessor->left->father = sucessor;
+    }
+}

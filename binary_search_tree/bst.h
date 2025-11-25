@@ -31,6 +31,7 @@ class bst
         tree_node* tree_sucessor(tree_node *current);
         tree_node* tree_predecessor(tree_node *current);
         void       transplant(tree_node *u, tree_node *v);
+        void       tree_delete(tree_node *del);
 };  
 
 #endif
