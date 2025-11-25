@@ -59,7 +59,7 @@ tree_node* bst::tree_min(tree_node *tracker)
     return tracker;
 }
 
-tree_node* bst::tre_max(tree_node *tracker)
+tree_node* bst::tree_max(tree_node *tracker)
 {
     while (tracker != nullptr)
     {
@@ -119,7 +119,42 @@ tree_node* bst::tree_sucessor(tree_node *current)
 
 tree_node* bst::tree_predecessor(tree_node *current)
 {
-    
+    if (current->left != nullptr)
+        return tree_max(current->left);
 
+    tree_node *previous = current->father;
+
+    while (previous != nullptr && current == previous->left)
+    {
+        current = previous;
+        previous = previous->father;
+    }
     
+    return previous;
+}
+
+void bst::transplant(tree_node *u, tree_node *v)
+{
+    if (u->father == nullptr)
+        root = v;
+    
+    else if (u == u->father->left)
+    {
+        u->father->left = v;
+        u->right = nullptr;
+    }
+
+    else 
+    {
+        u->father->right = v;
+        u->right = nullptr;
+    }
+
+    if (v != nullptr)
+    {
+        v->father = u->father;
+        u->father = nullptr;
+    }
+
+    return ;
 }

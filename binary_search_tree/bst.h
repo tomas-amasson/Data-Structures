@@ -25,11 +25,12 @@ class bst
         bst();
         void tree_insert(int key);
         tree_node* tree_min(tree_node* tracker);
-        tree_node* tre_max (tree_node* tracker);
+        tree_node* tree_max (tree_node* tracker);
         tree_node* rec_tree_search(tree_node* tracker, int key);
         tree_node* tree_search(int key);
         tree_node* tree_sucessor(tree_node *current);
         tree_node* tree_predecessor(tree_node *current);
-};
+        void       transplant(tree_node *u, tree_node *v);
+};  
 
 #endif
